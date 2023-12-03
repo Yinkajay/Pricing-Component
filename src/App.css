@@ -37,18 +37,17 @@ html {
   height: 100%;
 }
 
-body {
-  background: url('../images/bg-pattern.svg'), var(--Very-Pale-Blue);
-  background-repeat: no-repeat;
-  background-size: contain;
-  font-family: 'Manrope', sans-serif;
-}
-
 #root {
   width: 100%;
   height: 100%;
 }
 
+body {
+  background: url('../images/bg-pattern.svg'), var(--Very-Pale-Blue);
+  background-repeat: no-repeat;
+  background-size: 100% 50%;
+  font-family: 'Manrope', sans-serif;
+}
 
 .container {
   height: 100%;
@@ -59,11 +58,13 @@ body {
 }
 
 .header {
-  /* background-color: red; */
   text-align: center;
-  /* width: 400px; */
   position: absolute;
   top: 3.5rem;
+}
+
+.header br{
+  display: none;
 }
 
 .header h1 {
@@ -82,7 +83,6 @@ body {
   width: 130px;
 }
 
-
 .card {
   width: 90%;
   max-width: 30rem;
@@ -95,14 +95,13 @@ body {
 }
 
 .stats {
-  /* background-color: yellow; */
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
 }
 
 .stats p:first-child {
-  flex: 0.5;
+  flex: 1;
   /* background-color: green; */
   color: var(--Grayish-Blue);
   text-transform: uppercase;
@@ -115,7 +114,7 @@ body {
   /* background-color: red; */
   display: flex;
   align-items: center;
-  flex: 0.5;
+  flex: 1;
 }
 
 .price-value {
@@ -125,9 +124,11 @@ body {
   margin: 0 2px;
 }
 
+.mobile {
+  display: none;
+}
 
 .input-area {
-  /* border: 3px solid; */
   margin-bottom: 1rem;
 }
 
@@ -152,25 +153,21 @@ input[type="range"]::-webkit-slider-thumb {
   background-position: 50% 50%;
   background-repeat: no-repeat;
   width: 38px;
-  height:38px;
+  height: 38px;
   border-radius: 50%;
   cursor: pointer;
 }
 
-input[type="range"]::-webkit-slider-thumb:hover{
-box-shadow: 0px 0px 10px 5px var(--Soft-Cyan-2);
-background-color: hsl(174, 91%, 33%);
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 10px 5px var(--Soft-Cyan-2);
+  background-color: hsl(174, 91%, 33%);
 }
 
 /* .input-area input[type="range"]::-webkit-slider-runnable-track { */
-  /* background-color: #ccc; */
-  /* height: 8px; */
-  /* border-radius: 4px; */
+/* background-color: #ccc; */
+/* height: 8px; */
+/* border-radius: 4px; */
 /* } */
-
-
-
-/* Firefox */
 
 input[type="range"]::-moz-range-thumb {
   appearance: none;
@@ -261,13 +258,11 @@ input:checked+.slider:before {
 }
 
 .bottom {
-  /* background-color: green; */
   right: 2rem;
   left: 2rem;
   position: absolute;
   bottom: 1rem;
   display: flex;
-  /* height: 30%; */
 }
 
 .features {
@@ -286,7 +281,6 @@ input:checked+.slider:before {
 }
 
 .start {
-  /* background-color: pink; */
   flex: 0.5;
   display: flex;
   justify-content: center;
@@ -308,3 +302,123 @@ input:checked+.slider:before {
   cursor: pointer;
 }
 
+@media (max-width: 500px) {
+  .card {
+    height: max-content;
+    height: 400px;
+    padding: 1rem 1rem 1rem;
+  }
+
+  .header br{
+    display: block;
+  }
+
+  .divider {
+    margin: 1rem -1rem 0;
+  }
+
+  .header p {
+    font-size: 15px;
+    color: var(--Grayish-Blue);
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .stats {
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  .input-area {
+    width: 100%;
+  }
+
+  .stats p:first-child {
+    flex: 1;
+    margin-bottom: 2rem;
+  }
+
+  .stats p:last-child {
+    flex: 1;
+  }
+
+  .billing {
+    padding: 0 55px;
+    text-align: center;
+  }
+
+  .bottom {
+    left: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .features {
+    flex: 1;
+    margin: 24px 0 16px;
+  }
+
+  .feature {
+    margin: 8px 0;
+  }
+
+  .feature p {
+    font-size: 12px;
+    padding: 0 10px;
+    display: inline-block;
+    color: var(--Grayish-Blue);
+  }
+
+  .start {
+    flex: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .header {
+    top: 2rem;
+  }
+
+  .header h1 {
+    font-size: 22px;
+    padding: 0 8px;
+  }
+
+  .header p {
+    font-size: 13px;
+    padding: 8px 32px;
+    color: var(--Grayish-Blue);
+  }
+
+  .billing {
+    padding: 0 48px;
+  }
+  .annual-discount{
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 300px) {
+  .billing {
+    font-size: 10px;
+    padding: 0 30px;
+  }
+
+  .annual-discount{
+    height: 10px;
+    font-size: 8px;
+    right: 6px;
+  }
+}

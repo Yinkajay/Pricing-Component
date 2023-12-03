@@ -65,18 +65,21 @@ function App() {
         <h1>
           Simple, traffic-based pricing
         </h1>
-        <p>Sign-up for our 30-day trial. No credit card required.</p>
+        <p>Sign-up for our 30-day trial. <br /> No credit card required.</p>
       </div>
       <div className="card">
         <div className='stats'>
           <p>
             {getPageviews(price)} Pageviews
           </p>
+          <div className="input-area mobile">
+            <input type="range" name="" id="" min='8' max='36' step='4' value={price} onChange={(e) => setPrice(e.target.value)} />
+          </div>
           <p>
             <span className='price-value'>${billingMode === 'monthly' ? (price * 1).toFixed(2) : (price * 0.75).toFixed(2)}</span>/ month
           </p>
         </div>
-        <div className="input-area">
+        <div className="input-area desktop">
           <input type="range" name="" id="" min='8' max='36' step='4' value={price} onChange={(e) => setPrice(e.target.value)} />
         </div>
         <div className="billing">
@@ -90,7 +93,7 @@ function App() {
             </label>
           </div>
           <p>
-            Yearly Billing <span className='annual-discount'>25% discount</span>
+            Yearly Billing <span className='annual-discount desktop'>25% discount</span> <span className='annual-discount mobile'>25%</span>
           </p>
         </div>
         <hr className='divider' />
