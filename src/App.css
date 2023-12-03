@@ -59,9 +59,29 @@ body {
 }
 
 .header {
+  /* background-color: red; */
+  text-align: center;
+  /* width: 400px; */
   position: absolute;
-  top: 0;
+  top: 3.5rem;
 }
+
+.header h1 {
+  color: var(--Dark-Desaturated-Blue);
+  font-size: 28px;
+}
+
+.header p {
+  font-size: 15px;
+  color: var(--Grayish-Blue);
+}
+
+.bg-pattern {
+  position: absolute;
+  top: 2rem;
+  width: 130px;
+}
+
 
 .card {
   width: 90%;
@@ -71,10 +91,12 @@ body {
   padding: 2rem 2rem 1rem;
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
   background-color: white;
+  position: relative;
 }
 
 .stats {
   /* background-color: yellow; */
+  margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
 }
@@ -82,38 +104,207 @@ body {
 .stats p:first-child {
   flex: 0.5;
   /* background-color: green; */
+  color: var(--Grayish-Blue);
   text-transform: uppercase;
   font-size: 13px;
   letter-spacing: 2px;
-  
+
 }
 
-  .stats p:last-child{
-    /* background-color: red; */
-    display: flex;
-    align-items: center;
-    flex: 0.5;
-  }
+.stats p:last-child {
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  flex: 0.5;
+}
 
-  .price-value{
-    font-weight: 800;
-    font-size: 35px;
-    color: var(--Dark-Desaturated-Blue);
-    margin: 0 2px;
-  }
-
-
-.input-area{
-  
+.price-value {
+  font-weight: 800;
+  font-size: 35px;
+  color: var(--Dark-Desaturated-Blue);
+  margin: 0 2px;
 }
 
 
-/* Here are the different page view ranges and the corresponding monthly price totals:
+.input-area {
+  /* border: 3px solid; */
+  margin-bottom: 1rem;
+}
 
-- 10K pageviews / $8 per month
-- 50K pageviews / $12 per month
-- 100K pageviews / $16 per month
-- 500k pageviews / $24 per month
-- 1M pageviews / $36 per month
+.input-area input {
+  width: 100%;
+}
 
-If the visitor switches the toggle to yearly billing, a 25% discount should be applied to all prices. */
+.input-area input[type="range"] {
+  /* For modern browsers */
+  background-color: var(--Soft-Cyan-2);
+  appearance: none;
+  height: 10px;
+  border-radius: 4px;
+  /* accent-color: #F55050; */
+}
+
+/* WebKit-based browsers (Chrome, Safari) */
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  background: url('../images/icon-slider.svg');
+  background-color: var(--Strong-Cyan);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  width: 38px;
+  height:38px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover{
+box-shadow: 0px 0px 10px 5px var(--Soft-Cyan-2);
+background-color: hsl(174, 91%, 33%);
+}
+
+/* .input-area input[type="range"]::-webkit-slider-runnable-track { */
+  /* background-color: #ccc; */
+  /* height: 8px; */
+  /* border-radius: 4px; */
+/* } */
+
+
+
+/* Firefox */
+
+input[type="range"]::-moz-range-thumb {
+  appearance: none;
+  background: url('../images/icon-slider.svg') center center no-repeat, var(--Strong-Cyan);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+
+.billing {
+  /* background-color: yellow; */
+  display: flex;
+  padding: 0 95px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  position: relative;
+  color: var(--Grayish-Blue);
+}
+
+.divider {
+  margin: 2rem -2rem 0;
+  border: 1px solid var(--Light-Grayish-Blue-2);
+}
+
+.billing div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.annual-discount {
+  background-color: var(--Light-Grayish-Red);
+  color: var(--Light-Red);
+  position: absolute;
+  font-size: 10px;
+  white-space: nowrap;
+  top: 4px;
+  height: 16px;
+  right: 16px;
+  vertical-align: middle;
+  padding: 1px 4px;
+  border-radius: 5px;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 24px;
+}
+
+.toggle-switch input[type="checkbox"] {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: var(--Strong-Cyan);
+}
+
+input:checked+.slider:before {
+  transform: translateX(18px);
+}
+
+.bottom {
+  /* background-color: green; */
+  right: 2rem;
+  left: 2rem;
+  position: absolute;
+  bottom: 1rem;
+  display: flex;
+  /* height: 30%; */
+}
+
+.features {
+  flex: 0.5;
+}
+
+.feature {
+  margin: 10px 0;
+}
+
+.feature p {
+  font-size: 12px;
+  padding: 0 10px;
+  display: inline-block;
+  color: var(--Grayish-Blue);
+}
+
+.start {
+  /* background-color: pink; */
+  flex: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start button {
+  padding: 12px 30px;
+  border-radius: 20px;
+  border: none;
+  color: var(--Light-Grayish-Blue);
+  background-color: var(--Dark-Desaturated-Blue);
+  font-weight: 600;
+}
+
+
+.start button:hover {
+  color: var(--Light-Grayish-Blue-2);
+  cursor: pointer;
+}
+

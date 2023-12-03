@@ -1,11 +1,20 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
+import checkImage from '../images/icon-check.svg'
+import backgroundPattern from '../images/pattern-circles.svg'
 
 function App() {
-  const [price, setPrice] = useState(13.00)
+  const [price, setPrice] = useState(12)
   const [billingMode, setBillingMode] = useState('monthly')
-  // const [pageviews, setPageviews] = useState('50K')
+
+  const toggleMode = (mode) => {
+    if (mode === 'monthly') {
+      setBillingMode('yearly')
+    } else {
+      setBillingMode('monthly')
+    }
+  }
 
   function formatNumber(number) {
     if (number >= 1000000) {
@@ -17,13 +26,6 @@ function App() {
     }
   }
 
-  const toggleMode = (mode) => {
-    if (mode === 'monthly') {
-      setBillingMode('yearly')
-    } else {
-      setBillingMode('monthly')
-    }
-  }
 
   const getPageviews = (price) => {
     if (price <= 8) {
@@ -45,14 +47,25 @@ function App() {
     }
   }
 
+  const changeModeHandler = (e) => {
+    console.log(e.target.checked)
+    const isYearly = e.target.checked
+    if (isYearly) {
+      setBillingMode('yearly')
+    } else {
+      setBillingMode('monthly')
+    }
+  }
+
 
   return (
-    // <>
     <div className="container">
+      <img src={backgroundPattern} alt="background-pattern" className='bg-pattern' />
       <div className="header">
-        <h2>{price}</h2>
-        Simple, traffic-based pricing
-        Sign-up for our 30-day trial. No credit card required.
+        <h1>
+          Simple, traffic-based pricing
+        </h1>
+        <p>Sign-up for our 30-day trial. No credit card required.</p>
       </div>
       <div className="card">
         <div className='stats'>
@@ -60,26 +73,47 @@ function App() {
             {getPageviews(price)} Pageviews
           </p>
           <p>
-            <span className='price-value'>${price}</span>/ month
+            <span className='price-value'>${billingMode === 'monthly' ? (price * 1).toFixed(2) : (price * 0.75).toFixed(2)}</span>/ month
           </p>
         </div>
         <div className="input-area">
           <input type="range" name="" id="" min='8' max='36' step='4' value={price} onChange={(e) => setPrice(e.target.value)} />
         </div>
-        <div className="">
-          Monthly Billing
-          Yearly Billing 25% discount
-        </div>
-        <div className="">
+        <div className="billing">
+          <p>
+            Monthly Billing
+          </p>
           <div className="">
-
-            Unlimited websites
-            100% data ownership
-            Email reports
+            <label className="toggle-switch">
+              <input type="checkbox" id="switch" onChange={(e) => changeModeHandler(e)} />
+              <span className="slider"></span>
+            </label>
           </div>
-          <button>
-            Start my trial
-          </button>
+          <p>
+            Yearly Billing <span className='annual-discount'>25% discount</span>
+          </p>
+        </div>
+        <hr className='divider' />
+        <div className="bottom">
+          <div className="features">
+            <div className="feature">
+              <img src={checkImage} alt="check" />
+              <p>Unlimited websites</p>
+            </div>
+            <div className="feature">
+              <img src={checkImage} alt="check" />
+              <p>100% data ownership</p>
+            </div>
+            <div className="feature">
+              <img src={checkImage} alt="check" />
+              <p>Email reports</p>
+            </div>
+          </div>
+          <div className="start">
+            <button className=''>
+              Start my trial
+            </button>
+          </div>
         </div>
       </div>
       {/* <div className="attribution">
@@ -87,7 +121,6 @@ function App() {
               Coded by <a href="#">Your Name Here</a>.
             </div> */}
     </div>
-    // </>
   )
 }
 
